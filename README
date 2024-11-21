@@ -1,0 +1,6 @@
+To execute file using container with apptainer
+
+chmod +x script.sh
+and execute it using below command
+
+./script.sh

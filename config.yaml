@@ -1,0 +1,16 @@
+seed: 42
+optimize:
+  optimizer: Adam
+  lr: 0.001
+train:
+  epochs: 500
+  batch_size: 64
+dataset:
+  path: MNIST
+  test_size: 0.2
+  train_size: 0.6
+  val_size: 0.2
+  num_workers: 2
+loss: custom
+image_size: 50
+log_wandb: True

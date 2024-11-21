@@ -1,0 +1,39 @@
+Bootstrap: docker
+From: nvidia/cuda:12.1.1-devel-ubuntu22.04
+
+%files
+    environment.yml /environment.yml
+    requirements.txt /requirements.txt
+
+%post
+    # Update and install necessary packages
+     apt-get update && apt-get install -y --no-install-recommends \
+        wget \
+        curl \
+        ca-certificates \
+        && rm -rf /var/lib/apt/lists/*
+
+    # Install Miniconda for managing environments
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh
+    bash /tmp/miniconda.sh -b -p /opt/conda
+    rm /tmp/miniconda.sh
+    export PATH="/opt/conda/bin:$PATH"
+
+    # Update conda and set up environment
+    conda update -n base -c defaults conda -y
+
+    # Install Mamba for faster package installation
+    /opt/conda/bin/conda install -n base -c conda-forge mamba -y
+
+    # Create a new Conda environment using the environment files.
+    mamba env create --quiet --file /environment.yml
+    
+    # Clean up
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+    mamba clean --all -y
+
+    # Now add the script to activate the Conda environment
+    echo '. "/opt/conda/etc/profile.d/conda.sh"' >> $SINGULARITY_ENVIRONMENT
+    echo 'conda activate vphys' >> $SINGULARITY_ENVIRONMENT
+
+    # sudo apptainer build container_vphys.sif container_vphys.def 

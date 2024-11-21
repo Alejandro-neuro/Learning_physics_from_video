@@ -1,0 +1,8 @@
+--find-links https://pypi.anaconda.org/scientific-python-nightly-wheels/simple/scikit-learn
+--index-url https://download.pytorch.org/whl/cu121
+--extra-index-url https://pypi.org/simple
+torch
+torchvision
+omegaconf
+wandb
+scikit-learn
