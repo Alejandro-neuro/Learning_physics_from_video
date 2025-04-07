@@ -1,6 +1,20 @@
+## Learning physics from video
+
+In this repository you can find the implemenation for the paper Learning Physics From Video: Unsupervised Physical Parameter Estimation for Continuous Dynamical Systems
+available at: https://arxiv.org/abs/2410.01376
+
+## Dataset
+
+The Real videos used for the experiment can be found at: https://www.kaggle.com/datasets/jaswar/physical-parameter-prediction
+
+## Data processing
+
+Our provide code assumes your input data is a pytorch tensor with dimmentions [batch_size, number of frames, channels, width, height].  Therefore, to use the videos from the dataset, you need to transform the .mp4 video to a tensor.
+
+## Execution
+
 To execute file using container with apptainer
 
 chmod +x script.sh
 and execute it using below command
-
 ./script.sh
