@@ -58,3 +58,65 @@ The code expects the videos in **PyTorch tensor** format:
 ```python
 # Expected shape: [batch_size, num_frames, channels, height, width]
 video_tensor = torch.tensor(...)
+#To convert .mp4 files to tensors, use:
+python scripts/convert_video_to_tensor.py --input_dir videos/ --output_dir data/tensors/
+```
+
+---
+
+## 🚀 Quick Start
+
+Run your training and evaluation using apptainer:
+
+```bash
+chmod +x script.sh
+./script.sh
+```
+This executes training within the containerized environment and stores results accordingly.
+
+---
+
+## 🛠️ Requirements
+
+-PyTorch ≥ 1.12
+-ffmpeg (for video conversion)
+-numpy, matplotlib
+-Apptainer/Singularity (for container support)
+
+See environment.yml or apptainer for details.
+
+---
+
+## 📦 Project Structure
+
+```
+Learning_physics_from_video/
+├── data/                     # Processed tensors
+├── videos/                   # Raw video input
+├── models/                   # Encoder + Physics block
+├── scripts/                  # Training, conversion utilities
+├── results/                  # Saved models and plots
+├── script.sh                 # Container launch script
+└── README.md
+```
+
+---
+
+## ✍️ Citation
+If you find this project useful in your research, please consider citing:
+
+```
+@inproceedings{castaneda2025learning,
+  title={Learning Physics From Video: Unsupervised Physical Parameter Estimation for Continuous Dynamical Systems},
+  author={Castañeda Garcia, Alejandro and Warchocki, Jan and van Gemert, Jan and Brinks, Daan and T\"omen, Nergis},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2025}
+}
+```
+
+---
+
+## 📬 Contact
+For questions, contact [Alejandro Castañeda Garcia]([https://arxiv.org/abs/2410.01376](https://github.com/Alejandro-neuro)) or open an issue.
+
+
