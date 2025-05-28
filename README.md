@@ -78,10 +78,11 @@ This executes training within the containerized environment and stores results a
 
 ## 🛠️ Requirements
 
--PyTorch ≥ 1.12
--ffmpeg (for video conversion)
--numpy, matplotlib
--Apptainer/Singularity (for container support)
+- PyTorch ≥ 1.12
+- ffmpeg (for video conversion)
+- numpy
+- matplotlib
+- Apptainer/Singularity (for container support)
 
 See environment.yml or apptainer for details.
 
@@ -117,6 +118,6 @@ If you find this project useful in your research, please consider citing:
 ---
 
 ## 📬 Contact
-For questions, contact [Alejandro Castañeda Garcia]([https://arxiv.org/abs/2410.01376](https://github.com/Alejandro-neuro)) or open an issue.
+For questions, contact [Alejandro Castañeda Garcia](https://github.com/Alejandro-neuro) or open an issue.
 
 
