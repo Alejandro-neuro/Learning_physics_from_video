@@ -62,6 +62,8 @@ video_tensor = torch.tensor(...)
 python scripts/convert_video_to_tensor.py --input_dir videos/ --output_dir data/tensors/
 ```
 
+In the File ./src/utils/video2npy.py  is an example of how to transform videos to the required shape.  However, the number of frames pro sample and "delta time"need to be selected by the user following the guidelines given in the paper 
+
 ---
 
 ## 🚀 Quick Start
