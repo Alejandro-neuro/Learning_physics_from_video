@@ -165,7 +165,7 @@ def execute_experiment(path, dynamics, experiment_name, dt=0.01):
     latentEncoder_I, log, params  = train.train(latentEncoder_I, 
                                     train_dataloader, 
                                     test_dataloader,
-                                    lr_phys = 1.0,                                 
+                                    lr_phys = 0.01,                                 
                                     loss_name='latent_loss',
                                     experiment_name=experiment_name)
     
@@ -239,6 +239,7 @@ def iterate_folders_and_process(root_folder, output_folder='output', dt = 0.01):
                     # Execute the experiment
                     experiment = '_'.join(component.replace(' ', '') for component in path_components)
                     current_dynamics = get_dynamics(file_path)
+                    print(f"Current dynamics: {current_dynamics}")
                     video_number += 1
                     model, [a, b, max_z, min_z, z0, z1] = execute_experiment(file_path, current_dynamics,  output_folder, dt)
 
@@ -253,6 +254,9 @@ def iterate_folders_and_process(root_folder, output_folder='output', dt = 0.01):
     max_depth = max(len(row) - 2 for row in results)  # Determine max depth of folder structure
     #headers = [f'Folder_Level_{i+1}' for i in range(max_depth)] + ['alpha', 'beta', 'max_z', 'min_z']
     headers = ['run', 'alpha', 'beta', 'max_z', 'min_z',  'z0', 'z1']
+
+    if not os.path.exists(f'./Results/{output_folder}'):
+        os.makedirs(f'./Results/{output_folder}')
 
     with open(f'./Results/{output_folder}/{output_folder}.csv', mode='w', newline='') as csv_file:
         writer = csv.writer(csv_file)
