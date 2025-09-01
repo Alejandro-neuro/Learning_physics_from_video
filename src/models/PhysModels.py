@@ -324,7 +324,7 @@ class torricelli(nn.Module):
             self.alpha = torch.tensor([init_phys], requires_grad=True).float()
             self.beta = torch.tensor([0.0], requires_grad=True).float()
         else:
-            self.alpha = torch.tensor([0.5], requires_grad=True).float()        
+            self.alpha = torch.tensor([1.0], requires_grad=True).float()        
             self.beta = torch.tensor([0.0], requires_grad=True).float()
 
         self.alpha = nn.Parameter(self.alpha )
