@@ -146,7 +146,7 @@ def train(model, train_loader, val_loader, lr_phys = 1.0,loss_name=None, experim
                 config={
                 "learning_rate": cfg.optimize.lr,
                 "architecture": model_name,
-                "dataset": "NEURON",
+                "dataset": "Delfys75",
                 "epochs": cfg.train.epochs,
                 }
             )
