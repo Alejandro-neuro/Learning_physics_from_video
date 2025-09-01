@@ -14,14 +14,18 @@ def iterate_and_process_videos(base_path):
             mp4_files = [f for f in files if f.endswith('.mp4') and 'mask' not in f]
             for mp4_file in mp4_files:
                 video_path = os.path.join(root, mp4_file)
-                numpy_save_path = os.path.join(root, f"{os.path.basename(root)}.npy")
+                print(f"Processing video: {video_path}")
+                if os.path.basename(root)=="":
+                    numpy_save_path = os.path.join(root, f"{mp4_file.split('.')[0]}.npy")
+                else:
+                    numpy_save_path = os.path.join(root, f"{os.path.basename(root)}.npy")
+                print(f"Saving numpy array to: {numpy_save_path}")
                 video_array = process_video(video_path, new_width=100, new_height=56)
                 np.save(numpy_save_path, video_array)
 
 # Function to process video: resize, convert to grayscale, and normalize
 def process_video(video_path, new_width, new_height):
-    print('---------------------------------------------------------')
-    print(video_path)
+    print('---------------------------------------------------------')    
     last_two_folders = video_path.split('/')[-3:-1]
     last_two_folders = '_'.join(last_two_folders)
     cap = cv2.VideoCapture(video_path)
@@ -60,7 +64,7 @@ def process_video(video_path, new_width, new_height):
     nframes = np_frames.shape[0]
   
 
-    step = 24 # frames to skip
+    step = 6 # frames to skip
     nf = 10 # number of frames per sample
     max_frames = nframes - (nf*step)
     for i in range(max_frames):
@@ -74,7 +78,7 @@ def process_video(video_path, new_width, new_height):
     dt = (step)/60
     dataset =  np.array(dataset)   
 
-    print(f"Time between frames: {dt} minutes")
+    print(f"Time between frames: {dt} ")
     print(f"Shape of dataset: {dataset.shape}")
 
     samples_number = -1
@@ -85,6 +89,9 @@ def process_video(video_path, new_width, new_height):
     sample_frames = sample_frames.transpose(1,2,0)
     plt.figure(figsize=(5,25))
     plt.imshow(sample_frames)
+    
+    if not os.path.exists('./Frames'):
+        os.makedirs('./Frames')
     plt.savefig(f'./Frames/{last_two_folders}_sample_frame.png', dpi=300)
     plt.close()
 
